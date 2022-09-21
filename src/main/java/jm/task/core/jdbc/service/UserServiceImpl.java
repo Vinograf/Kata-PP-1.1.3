@@ -9,12 +9,18 @@ import java.util.List;
 
 import static jm.task.core.jdbc.Util.getConnection;
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends UserDaoJDBCImpl implements UserService {
     UserDaoJDBCImpl User = new UserDaoJDBCImpl();
     Connection connection = getConnection();
 
 
+    public UserServiceImpl() {
+        super();
+    }
+
+    @Override
     public void createUsersTable() {
+
         Statement statement = null;
         String create = "CREATE TABLE users (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), lastName VARCHAR(20), age INT)";
         try {
@@ -25,7 +31,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
     public void dropUsersTable() {
+
         Statement statement = null;
         String create =
                 "DROP TABLE users;";
@@ -37,7 +45,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
+
         PreparedStatement preparedStatement = null;
         String save = "INSERT INTO users (name, lastName, age) VALUES (?, ?, ?)";
         try {
@@ -53,7 +63,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
     public void removeUserById(long id) {
+
         PreparedStatement preparedStatement = null;
         String remove = "DELETE FROM users WHERE id = ?";
         try {
@@ -68,6 +80,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> getAllUsers() {
+
 
         List<User> userList = new ArrayList<>();
         String getAll = " Select id, name , lastName , age from users";
@@ -88,6 +101,7 @@ public class UserServiceImpl implements UserService {
         return userList;
     }
 
+    @Override
     public void cleanUsersTable() {
 
         Statement statement = null;
@@ -100,4 +114,5 @@ public class UserServiceImpl implements UserService {
         }
 
     }
-}
+    }
+
