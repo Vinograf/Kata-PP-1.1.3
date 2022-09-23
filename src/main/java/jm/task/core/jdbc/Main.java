@@ -13,7 +13,7 @@ public class Main {
 //        userDao.dropUsersTable();
         System.out.println("OK");
         userDao.createUsersTable();
-        System.out.println( "done");
+        System.out.println("done");
 
 
         userDao.saveUser("Name1", "LastName1", (byte) 20);
@@ -23,11 +23,11 @@ public class Main {
 
 //        userDao.removeUserById(1);
 
-        System.out.println( userDao.getAllUsers().size());
+        System.out.println(userDao.getAllUsers().size());
         userDao.cleanUsersTable();
         userDao.dropUsersTable();
 
 
-        }
+    }
 
 }
